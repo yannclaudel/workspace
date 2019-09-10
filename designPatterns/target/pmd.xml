@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd xmlns="http://pmd.sourceforge.net/report/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/report/2.0.0 http://pmd.sourceforge.net/report_2_0_0.xsd"
+    version="6.8.0" timestamp="2019-09-09T15:40:18.083">
+<file name="C:\dev\workspace\designPatterns\src\main\java\com\creational\abstractfactory\AbstractFactory.java">
+<violation beginline="14" endline="14" begincolumn="16" endcolumn="58" rule="UnnecessaryModifier" ruleset="Code Style" package="com.creational.abstractfactory" class="AbstractFactory" method="createInstrument" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#unnecessarymodifier" priority="3">
+Unnecessary modifier 'public' on method 'createInstrument': the method is declared in an interface type
+</violation>
+</file>
+<file name="C:\dev\workspace\designPatterns\src\main\java\com\model\math\Matrix.java">
+<violation beginline="122" endline="122" begincolumn="38" endcolumn="64" rule="UselessParentheses" ruleset="Code Style" package="com.model.math" class="Matrix" method="times" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#uselessparentheses" priority="4">
+Useless parentheses.
+</violation>
+</file>
+<file name="C:\dev\workspace\designPatterns\src\main\java\com\model\matrix\Matrix.java">
+<violation beginline="35" endline="35" begincolumn="58" endcolumn="84" rule="UselessParentheses" ruleset="Code Style" package="com.model.matrix" class="Matrix" method="times" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#uselessparentheses" priority="4">
+Useless parentheses.
+</violation>
+</file>
+<file name="C:\dev\workspace\designPatterns\src\main\java\com\model\matrix\NoneStdMatrix.java">
+<violation beginline="28" endline="28" begincolumn="58" endcolumn="79" rule="UselessParentheses" ruleset="Code Style" package="com.model.matrix" class="NoneStdMatrix" method="times" externalInfoUrl="https://pmd.github.io/pmd-6.8.0/pmd_rules_java_codestyle.html#uselessparentheses" priority="4">
+Useless parentheses.
+</violation>
+</file>
+</pmd>
