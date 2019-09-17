@@ -4,17 +4,40 @@ import java.util.*;
 public class Sorting {
     private static Random random = new Random();
 
-    private static int[] partition3(int[] a, int l, int r) {
-      //write your code here
-
-
-      int m1 = l;
-      int m2 = r;
-      int[] m = {m1, m2};
+    public static int[] partition3(int[] a, int l, int r) {
+        int m1 = l;
+        int m2 = r;
+        int[] m = {m1, m2};
+        int count = 1;
+        //write your code here
+        int x = a[l];
+        int j = l;
+        for (int i = l + 1; i <= r; i++) {
+        	int t = a[i];
+            if (t <= x) {
+                j++;
+                
+                a[i] = a[j];
+                a[j] = t;
+                if (t==x) {
+                    int temp = a[j];
+                    a[j] = a[l+count];
+                    a[l+count] = temp;
+                    count++;
+                }
+            }
+        }
+        for (int i = 0; i < count; i++) {
+            int t = a[l+i];
+            a[l+i] = a[j-i];
+            a[j-i] = t;			
+		}
+        m[0] = j-count+1;
+        m[1]= j ;
       return m;
     }
 
-    private static int partition2(int[] a, int l, int r) {
+    public static int partition2(int[] a, int l, int r) {
         int x = a[l];
         int j = l;
         for (int i = l + 1; i <= r; i++) {
@@ -31,7 +54,7 @@ public class Sorting {
         return j;
     }
 
-    private static void randomizedQuickSort(int[] a, int l, int r) {
+    public static void randomizedQuickSort(int[] a, int l, int r) {
         if (l >= r) {
             return;
         }
@@ -40,11 +63,12 @@ public class Sorting {
         a[l] = a[k];
         a[k] = t;
         //use partition3
-        int m = partition2(a, l, r);
-        randomizedQuickSort(a, l, m - 1);
-        randomizedQuickSort(a, m + 1, r);
+        int[] m = partition3(a, l, r);
+        randomizedQuickSort(a, l, m[0]-1);
+        randomizedQuickSort(a, m[1] + 1, r);
     }
 
+    
     public static void main(String[] args) {
         FastScanner scanner = new FastScanner(System.in);
         int n = scanner.nextInt();

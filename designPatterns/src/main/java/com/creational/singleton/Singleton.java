@@ -32,6 +32,11 @@ public class Singleton implements Serializable {
 	private Singleton() {
 	}
 
+	/**
+	 * manage serialization
+	 * 
+	 * @return Object
+	 */
 	private Object readResolve() {
 		return instance;
 	}
