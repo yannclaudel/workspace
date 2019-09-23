@@ -38,12 +38,18 @@ public class Datex2Parser {
             list = handler.getList();
  
         } catch (SAXException e) {
-            // TODO Auto-generated catch block
+            if (in==null) System.err.println("IN IS NULL");
             e.printStackTrace();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } 
+        } finally {
+				try {
+		        	if (in!=null) in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+        }
         return list;
     }
 
