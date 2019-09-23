@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Datex {
 
-	public static final int INTERVAL_IN_MINUTE = 1;
+	public static final int INTERVAL_IN_MINUTE = 3;
 
 	public static final String TRAFFIC_A1 = "http://www.cita.lu/info_trafic/datex/trafficstatus_a1";
 	public static final String TRAFFIC_A3 = "http://www.cita.lu/info_trafic/datex/trafficstatus_a3";

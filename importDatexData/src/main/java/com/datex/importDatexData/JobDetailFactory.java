@@ -12,15 +12,11 @@ public class JobDetailFactory implements Serializable {
 	private static final long serialVersionUID = 3956590650927694727L;
 	private static volatile JobDetailFactory instance = null;
 
-	public JobDetail getJobDetailObject(String url) {
-		String[] words = url.split("/");
-		String jobname = "UNKNOWN";
-		if (words != null && words.length > 0)
-			jobname = words[words.length - 1];
+	public JobDetail getJobDetailObject(String url,String jobname) {
 		JobDataMap jobDataMap = new JobDataMap();
 		jobDataMap.put("jobName", jobname);
 		jobDataMap.put("input_url", url);
-		JobDetail job = newJob(ParseJob.class).withIdentity(jobname, "datex").setJobData(jobDataMap).build();
+		JobDetail job = newJob(ParseJob.class).withIdentity(jobname, "DATEX").setJobData(jobDataMap).build();
 		return job;
 	}
 

@@ -1,15 +1,12 @@
 package com.datex.importDatexData;
 
-import static org.quartz.JobBuilder.newJob;
 import static org.quartz.TriggerBuilder.newTrigger;
 
-import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerFactory;
 import org.quartz.SimpleScheduleBuilder;
 import org.quartz.Trigger;
-import org.quartz.examples.example1.SimpleExample;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import com.datex.model.Datex;
 
 /**
- * Hello world!
+ * Main Launcher
  *
  */
 public class App {
@@ -34,28 +31,31 @@ public class App {
 		// Trigger the job to run on the next round minute
 		SimpleScheduleBuilder scheduleBuilder = SimpleScheduleBuilder.simpleSchedule()
 				.withIntervalInMinutes(Datex.INTERVAL_IN_MINUTE).repeatForever();
-		
-		JobDetail jobA1 = JobDetailFactory.getInstance().getJobDetailObject(Datex.TRAFFIC_A1);
-		JobDetail jobA3 = JobDetailFactory.getInstance().getJobDetailObject(Datex.TRAFFIC_A3);
-						
-		Trigger triggerA1 = newTrigger().withIdentity("A1", "datex").withSchedule(scheduleBuilder).build();
-		Trigger triggerA3 = newTrigger().withIdentity("A3", "datex").withSchedule(scheduleBuilder).build();
 
-		sched.scheduleJob(jobA1, triggerA1);
-		sched.scheduleJob(jobA3, triggerA3);
+		for (String url : Datex.RESOURCE_MAP.keySet()) {
+			String[] words = url.split("/");
+			String jobname = "UNKNOWN";
+			if (words != null && words.length > 0)
+				jobname = words[words.length - 1].toUpperCase();
+
+			JobDetail job = JobDetailFactory.getInstance().getJobDetailObject(url, jobname);
+			Trigger trigger = newTrigger().withIdentity(jobname, "DATEX").withSchedule(scheduleBuilder).build();
+			sched.scheduleJob(job, trigger);
+		}
 
 		sched.start();
-
-
+		String ererer = "\"\"";
+		if (ererer=="null") {
+			
+		} 
 		// shut down the scheduler
-		//log.info("------- Shutting Down ---------------------");
-		//sched.shutdown(true);
-		//log.info("------- Shutdown Complete -----------------");
+		// log.info("------- Shutting Down ---------------------");
+		// sched.shutdown(true);
+		// log.info("------- Shutdown Complete -----------------");
 	}
 
 	public static void main(String[] args) throws Exception {
 		App app = new App();
 		app.run();
-		System.out.println("Hello World!");
 	}
 }

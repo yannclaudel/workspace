@@ -21,17 +21,16 @@ public class DatexParserHandler extends DefaultHandler {
 	private Stack<Measurement> objectStack = new Stack<Measurement>();
 
 	public void startDocument() throws SAXException {
-		//System.out.println("start of the document : ");
+		// System.out.println("start of the document : ");
 	}
 
 	public void endDocument() throws SAXException {
-		//System.out.println("end of the document document : ");
+		// System.out.println("end of the document document : ");
 	}
 
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		// Push it in element stack
 		this.elementStack.push(qName);
-
 		// If this is start of 'user' element then prepare a new User instance and push
 		// it in object stack
 		if ("siteMeasurements".equals(qName)) {
@@ -42,10 +41,8 @@ public class DatexParserHandler extends DefaultHandler {
 		if (!this.objectStack.empty()) {
 			Measurement m = (Measurement) this.objectStack.peek();
 
-			if ("measurementSiteReference".equals(qName)) {
-				if (attributes != null && attributes.getLength() == 3) {
-					m.setId(attributes.getValue(1));
-				}
+			if ("measurementSiteReference".equals(qName) && attributes != null && attributes.getLength() == 3) {
+				m.setId(attributes.getValue(1));
 			}
 		}
 	}

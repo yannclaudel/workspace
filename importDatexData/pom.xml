@@ -38,4 +38,26 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+		<reporting>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.11.0</version>
+			</plugin>
+
+		</plugins>
+	</reporting>
+		<build>
+		<plugins>
+			<!-- Part of Maven - specified version explicitly for compatibility with 
+				the maven-project-info-reports-plugin 3.0.0 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.7.1</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>
