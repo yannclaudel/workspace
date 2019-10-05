@@ -1,5 +1,8 @@
 import java.text.ParseException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Test {
 
@@ -17,6 +20,18 @@ public class Test {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		
+		List<String> words = new ArrayList<String>();
+		words.add("egg");
+		words.add("salad");
+		words.add("bread");
+		words.add("tomat");
+		List<String> firstnames = words.stream().map(String::toUpperCase)
+				.filter(nom->nom.length()>4) 
+				.limit(2) 
+				.collect(Collectors.toList());
+
+		
 
 	}
 

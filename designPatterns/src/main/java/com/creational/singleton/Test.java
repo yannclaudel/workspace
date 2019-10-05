@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 public class Test {
 
 	public static void main(String[] args) {
+				
 		Singleton s1 = Singleton.getInstance();
 		Singleton s2 = Singleton.getInstance();
 
@@ -48,7 +49,8 @@ public class Test {
 	}
 
 	public static void execute() {
-		Singleton s = Singleton.getInstance();
+		//Singleton s = Singleton.getInstance();
+		EnumSingleton s = EnumSingleton.INSTANCE;
 		System.out.println("s hash=" + s.hashCode());
 	}
 }
