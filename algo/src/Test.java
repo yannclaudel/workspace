@@ -1,7 +1,10 @@
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Test {
@@ -42,6 +45,10 @@ public class Test {
 
 	public static void mainZZ(String[] args) {
 
+		
+		Set<String> set = new HashSet<String>();
+		
+		
 		int nbr = 100;
 		int dim = 40;
 		int scale = 20;
