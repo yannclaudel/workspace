@@ -1,91 +1,138 @@
-import java.text.ParseException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.StringTokenizer;
 
-public class Test {
-
-	/*
-	 * public static void randomizedQuickSort0(int[] a, int l, int r) { if (l >= r)
-	 * { return; } int k = random.nextInt(r - l + 1) + l; int t = a[l]; a[l] = a[k];
-	 * a[k] = t; //use partition3 int m = partition2(a, l, r);
-	 * randomizedQuickSort(a, l, m - 1); randomizedQuickSort(a, m + 1, r); }
-	 */
-	public static void main(String[] args) {
-
-		try {
-			LocalDateTime dateTime = conversorStringToLocalDateTime("");
-			System.out.println(dateTime.toString());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-		List<String> words = new ArrayList<String>();
-		words.add("egg");
-		words.add("salad");
-		words.add("bread");
-		words.add("tomat");
-		List<String> firstnames = words.stream().map(String::toUpperCase)
-				.filter(nom->nom.length()>4) 
-				.limit(2) 
-				.collect(Collectors.toList());
-
-		
-
+  
+public class Test{
+	
+	private static class Pair{
+	    int a;
+	    int b;
+	    Pair(int p,int q){
+	        this.a=p;
+	        this.b=q;
+	    }
+	    
 	}
+	
+	
+    public static void main(String[] args) {
+        MyScanner sc = new MyScanner();
+        out = new PrintWriter(new BufferedOutputStream(System.out), true);
+        // Start writing your solution here. -------------------------------------
+        int n = sc.nextInt();
+        char[] l = sc.nextLine().replace(" ","").toCharArray();
+        int q = sc.nextInt();
+        Map<Integer,Pair> map = new HashMap<Integer,Pair>();
+        Pair pair = null;
+        for(int i=0; i<q; i++){
+            int a = sc.nextInt() - 1 ;
+            int b = sc.nextInt();
+            pair = map.get(a);
+            if (pair!=null) pair.a++;
+            else map.put(a, new Pair(1,0));
 
-	public static LocalDateTime conversorStringToLocalDateTime(String convertDate) throws ParseException {
-		LocalDateTime dateTime = LocalDateTime.parse(convertDate);
-		return dateTime;
-	}
-
-	public static void mainZZ(String[] args) {
-
-		
-		Set<String> set = new HashSet<String>();
-		
-		
-		int nbr = 100;
-		int dim = 40;
-		int scale = 20;
-		int[] a = new int[dim];
-		int[] b = new int[dim];
-		for (int i = 0; i < a.length; i++) {
-			double rand = Math.random() < 0.2 ? 5 : Math.random() * scale;
-			a[i] = (int) rand;
-			b[i] = (int) rand;
+            pair = map.get(b);
+            if (pair!=null) pair.b++;
+            else map.put(b, new Pair(0,1));       
+        }
+        
+        long count = 0;
+        int plus = 0;
+        for (int i = 0; i < l.length; i++) {
+        	pair = map.get(i);
+        	if (pair!=null) plus = plus + pair.a - pair.b;
+        	if (plus%2==1) {
+        		if (l[i]=='1') l[i]='0';
+        		else l[i]='1';
+        	}
+        	if (l[i]=='1') count++;
 		}
-		for (int i : a) {
-			System.out.print(i + " ");
+        
+        out.println(count);
+        for (char c : l) {
+        	out.print(c+" ");
 		}
-		System.out.println("");
-		// Sorting.randomizedQuickSort0(a, 0, a.length-1);
-		Sorting.randomizedQuickSort(b, 0, b.length - 1);
-		for (int i : a) {
-			System.out.print(i + " ");
+        // Stop writing your solution here. -------------------------------------
+        out.close();
+    }
+	
+	
+    public static void mainOld(String[] args) {
+        MyScanner sc = new MyScanner();
+        out = new PrintWriter(new BufferedOutputStream(System.out), true);
+        // Start writing your solution here. -------------------------------------
+        int n = sc.nextInt();
+        StringBuffer s   = new StringBuffer(sc.nextLine().replace(" ",""));
+        int q = sc.nextInt();
+        for(int i=0; i<q; i++){
+            int a = sc.nextInt();
+            int b = sc.nextInt();            
+            String temp = s.substring(a-1, b).replaceAll("1", "2").replaceAll("0", "1").replaceAll("2", "0");
+            s.replace(a-1, b, temp);
+            //s=s.substring(0,a-1)+temp+s.substring(b);
+        }
+        
+        char[] l = s.toString().toCharArray();
+        long count = 0;
+        for (char c : l) {
+			if (c=='1') count++;
 		}
-		System.out.println("\n------------");
-		for (int i : b) {
-			System.out.print(i + " ");
+        out.println(count);
+        for (char c : l) {
+        	out.print(c+" ");
 		}
-		System.out.println("\n------------");
-		/*
-		 * for (int k = 0; k < nbr; k++) {
-		 * 
-		 * for (int i = 0; i < a.length; i++) { double rand =
-		 * Math.random()<0.3?0:Math.random()*scale; a[i] = (int)rand; }
-		 * 
-		 * int result = MajorityElement.getMajorityElement(a, 0, a.length); int resultB
-		 * = MajorityElement.getMajorityElementBulk(a, 0, a.length);
-		 * 
-		 * 
-		 * for (int i : a) { System.out.print(i+" "); } System.out.println("result=" +
-		 * result + "\tresultB=" + resultB); if (result!=resultB) {
-		 * System.out.println("ERROR"); break; } }
-		 */
-	}
+        // Stop writing your solution here. -------------------------------------
+        out.close();
+    }
+ 
+ 
+ 
+     
+ 
+ 
+ 
+    //-----------PrintWriter for faster output---------------------------------
+    public static PrintWriter out;
+ 
+    //-----------MyScanner class for faster input----------
+    public static class MyScanner {
+        BufferedReader br;
+        StringTokenizer st;
+ 
+        public MyScanner() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+ 
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+ 
+        int nextInt() { return Integer.parseInt(next()); }
+        long nextLong() { return Long.parseLong(next()); }
+        double nextDouble() { return Double.parseDouble(next()); }
+         
+        String nextLine(){
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+    }
+    //--------------------------------------------------------
 }
