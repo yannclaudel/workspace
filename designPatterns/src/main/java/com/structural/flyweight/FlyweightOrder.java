@@ -6,7 +6,7 @@ public class FlyweightOrder {
 
 	public FlyweightOrder(String productName, int quantity) {
 		super();
-		this.product = Product.build(productName);
+		this.product = ProductCache.build(productName);
 		this.quantity = quantity;
 	}
 
