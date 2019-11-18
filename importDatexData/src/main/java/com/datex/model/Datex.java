@@ -8,13 +8,13 @@ public class Datex {
 
 	public static final int INTERVAL_IN_MINUTE = 3;
 
-	public static final String TRAFFIC_A1 = "http://www.cita.lu/info_trafic/datex/trafficstatus_a1";
-	public static final String TRAFFIC_A3 = "http://www.cita.lu/info_trafic/datex/trafficstatus_a3";
-	public static final String TRAFFIC_A4 = "http://www.cita.lu/info_trafic/datex/trafficstatus_a4";
-	public static final String TRAFFIC_A6 = "http://www.cita.lu/info_trafic/datex/trafficstatus_a6";
-	public static final String TRAFFIC_A7 = "http://www.cita.lu/info_trafic/datex/trafficstatus_a7";
-	public static final String TRAFFIC_A13 = "http://www.cita.lu/info_trafic/datex/trafficstatus_a13";
-	public static final String TRAFFIC_B40 = "http://www.cita.lu/info_trafic/datex/trafficstatus_b40";
+	public static final String TRAFFIC_A1 = "https://www.cita.lu/info_trafic/datex/trafficstatus_a1";
+	public static final String TRAFFIC_A3 = "https://www.cita.lu/info_trafic/datex/trafficstatus_a3";
+	public static final String TRAFFIC_A4 = "https://www.cita.lu/info_trafic/datex/trafficstatus_a4";
+	public static final String TRAFFIC_A6 = "https://www.cita.lu/info_trafic/datex/trafficstatus_a6";
+	public static final String TRAFFIC_A7 = "https://www.cita.lu/info_trafic/datex/trafficstatus_a7";
+	public static final String TRAFFIC_A13 = "https://www.cita.lu/info_trafic/datex/trafficstatus_a13";
+	public static final String TRAFFIC_B40 = "https://www.cita.lu/info_trafic/datex/trafficstatus_b40";
 
 	public static final String TRAFFIC_EVENT = "http://www.cita.lu/info_trafic/datex/situationrecord";
 

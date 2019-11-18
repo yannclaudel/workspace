@@ -1,56 +1,54 @@
 package com.hackerearth;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class TestClass {
 
 	public static void main(String[] args) {
-		//Scanner
-        Scanner s = new Scanner(System.in);
-		
-		
-		// Start writing your solution here. -------------------------------------
-		String read=null;
-		int dix = 10;
-		int _11 = 1;
-		int current;
-		while(true) {
-			try {
-				read = s.nextLine(); 
-			} catch (Exception e) {
-				break;
-			}
-			
-			if (read != null && read.length()>0)
-				current = Integer.valueOf(read).intValue();
-			else 
-				break;
+        MyScanner sc = new MyScanner();
+        out = new PrintWriter(new BufferedOutputStream(System.out), true);
+        // Start writing your solution here. -------------------------------------
+        long q = sc.nextLong();
+        for(long i=0; i<q; i++){
+            long a = sc.nextLong()%(1000000007);
+            long min=1,max=1;
+            /*
+            if (a>1) {
+            	max=a*(a-1)*(2*a-1)/6;
+            }
+            if ((a-1)%2==0) {
+            	min = a * (a-1) *(a-1)/4;
+            }else {
+            	long f = (a-1)/2;
+            	min = (a/2)*(f*f + (f+1)*(f+1));
+            }
+            out.println(min+" "+max);*/
+            
+            if (a>1) {
+            	max=(a*(a-1))%(1000000007);
+            	max=((max*(2*a-1))/6)%(1000000007);
+            }
+            if ((a-1)%2==0) {
+            	min = (a * (a-1))%(1000000007);
+            	min = (min* (a-1)/4)%(1000000007);
+            }else {
+            	long f = (a-1)/2;
+            	min = ((a/2)*((f*f)%(1000000007) + ((f+1)*(f+1))%(1000000007)))%(1000000007);
+            }
+            out.println(min+" "+max);            
+        }
+        
+        
+        // Stop writing your solution here. -------------------------------------
+        out.close();
 
-			dix = 10;
-			_11 = 1;
-			for (int j = 1; j < 100000; j++) {
-				if (current % dix == 0) {
-					_11 *= 11;
-				} else
-					break;
-				dix *= 10;
-			}
-			dix/=10;
-			System.out.println(current / dix * _11);
-			//out.println(current +"/"+ dix +"/"+ _11 + "\n");
-
-		}
-
-		// out.println(">>>" + (System.currentTimeMillis()-start));
-		// start = System.currentTimeMillis();
-
-		// Stop writing your solution here. -------------------------------------
-		out.close();
+	
+	
 	}
 
 	public static PrintWriter out;
