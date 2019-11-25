@@ -49,7 +49,7 @@ public class GraphTest {
 		adj[6] = new ArrayList<Integer>(Arrays.asList(new Integer[]{5}));
 		adj[7] = new ArrayList<Integer>(Arrays.asList(new Integer[]{5}));
 		
-		Graph graph = new Graph(n,adj);
+		final Graph graph = new Graph(n,adj);
 		graph.DFS();
 		assertTrue(!graph.isReachable(0, 7));
 		assertTrue(graph.isReachable(4, 7));

@@ -1,6 +1,5 @@
 package com.algo.solution;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class PowerOfTwo {
@@ -42,8 +41,8 @@ public class PowerOfTwo {
 	public static void main(String[] args) {
 		
 		int n = 100000;
-		//System.out.println(sumOfPowerOfTwo0(n));
-		//System.out.println(sumOfPowerOfTwo2(n));
+		System.out.println(sumOfPowerOfTwo0(n));
+		System.out.println(sumOfPowerOfTwo2(n));
 		
 		for (int i = 1482567; i < 1482574; i++) {
 			System.out.println("h("+i+")="+hash(10000019,34,2,new BigInteger(Integer.toString(i)),1000l));			

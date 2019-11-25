@@ -1,12 +1,41 @@
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Deque;
 import java.util.Scanner;
 
 public class Bipartite {
     private static int bipartite(ArrayList<Integer>[] adj) {
-        //write your code here
-        return -1;
+        int[] dist = new int[adj.length];
+        int[] color = new int[adj.length];
+        boolean bipartite = true;
+        for (int i = 0; i < dist.length; i++) {
+			dist[i]=-1;
+			color[i]=-1;
+		}
+        int currentColor = 0; 
+        dist[0]=0;
+        color[0]=currentColor;
+        Deque<Integer> queue = new ArrayDeque<>();
+        queue.add(0);
+        while(!queue.isEmpty()) {
+        	int u = queue.pollFirst().intValue();
+        	//System.out.println(">> dequeue >>" + u);
+        	for (int i = 0; i < adj[u].size(); i++) {
+        		int current = adj[u].get(i).intValue();
+            	//System.out.println("       current >>" + current);
+        		if (dist[current]==-1) {
+        			queue.add(current);
+        			dist[current]=dist[u]+1;
+        			color[current]=(color[u]+1)%2;
+                	//System.out.println("       add queue >>" + current + " distance " + dist[current]);
+        		}else {
+        			if (color[current]==color[u])
+        				bipartite = false;
+        		}				
+			}
+        }
+        
+        return (bipartite?1:0);
     }
 
     public static void main(String[] args) {

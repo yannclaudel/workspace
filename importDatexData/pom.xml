@@ -38,7 +38,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-		<reporting>
+	<reporting>
 		<plugins>
 
 			<plugin>
@@ -49,7 +49,7 @@
 
 		</plugins>
 	</reporting>
-		<build>
+	<build>
 		<plugins>
 			<!-- Part of Maven - specified version explicitly for compatibility with 
 				the maven-project-info-reports-plugin 3.0.0 -->
@@ -58,6 +58,24 @@
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.7.1</version>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<finalName>uber-${artifactId}-${version}</finalName>
+				</configuration>
+			</plugin>
 		</plugins>
+
+
 	</build>
 </project>

@@ -1,5 +1,4 @@
-import java.util.*;
-import java.io.*;
+import java.util.Scanner;
 
 public class CarFueling {
 	static int computeMinRefills(int dist, int tank, int[] stops) {
