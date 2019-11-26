@@ -6,66 +6,69 @@ import java.util.List;
 public class Graph {
 
 	private List<Integer>[] adj = null;
-	private int n = 0;
+	private int nbrVertex = 0;
 	private int[] group = null;
-	private int group_nbr = 0;
-	
+	private int nbrGroup = 0;
+
 	@SuppressWarnings("unchecked")
-	public Graph(int n) {
-		this.n = n;
-		adj =  new ArrayList[n];
-		for (int i = 0; i < n; i++) {
-			adj[i] = new ArrayList<Integer>();
+	public Graph(final int nbrVertex) {
+		this.nbrVertex = nbrVertex;
+		adj = new ArrayList[nbrVertex];
+		for (int i = 0; i < nbrVertex; i++) {
+			adj[i] = new ArrayList<>();
 		}
-		group = new int[n];
-	}
-	public Graph(int n,List<Integer>[] adj) {
-		this.n = n;
-		this.adj = adj;		
+		group = new int[nbrVertex];
 	}
 
-	public boolean isReachable(int x, int y) {
-		if (group==null);
+	public Graph(final int nbrVertex, final List<Integer>[] adj) {
+		this.nbrVertex = nbrVertex;
+		this.adj = adj;
+	}
+
+	public boolean isReachable(final int nodeX, final int nodeY) {
+		if (group == null) {
 			DFS();
-		if (group[x] == group[y])
-			return true;
-		else
-			return false;
-
+		}
+		return group[nodeX] == group[nodeY];
 	}
 
-	private void explore(int x, int[] visited, int group_id) {
-		visited[x] = 1;
-		group[x] = group_id;
-		for (int i = 0; i < adj[x].size(); i++) {
-			if (visited[adj[x].get(i).intValue()] != 1)
-				explore(adj[x].get(i).intValue(), visited, group_id);
+	private void explore(final int nodeX, int[] visited, final int groupId) {
+		visited[nodeX] = 1;
+		group[nodeX] = groupId;
+		for (int i = 0; i < adj[nodeX].size(); i++) {
+			if (visited[adj[nodeX].get(i).intValue()] != 1) {
+				explore(adj[nodeX].get(i).intValue(), visited, groupId);
+			}
 		}
 	}
 
 	public void DFS() {
-		int[] visited = new int[n];
-		group = new int[n];
-		group_nbr = 0;
+		final int[] visited = new int[nbrVertex];
+		group = new int[nbrVertex];
+		nbrGroup = 0;
 		for (int i = 0; i < adj.length; i++) {
 			if (visited[i] != 1) {
-				group_nbr++;
-				explore(i, visited, group_nbr);
+				nbrGroup++;
+				explore(i, visited, nbrGroup);
 
 			}
 		}
 	}
+
 	public List<Integer>[] getAdj() {
 		return adj;
 	}
+
 	public int getN() {
-		return n;
+		return nbrVertex;
 	}
+
 	public int[] getGroup() {
 		return group;
 	}
-	public int getGroup_nbr() {
-		return group_nbr;
+
+	public int getNbrGroup() {
+		return nbrGroup;
 	}
-	
+
 }

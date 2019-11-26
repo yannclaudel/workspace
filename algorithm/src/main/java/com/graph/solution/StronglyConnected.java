@@ -3,89 +3,91 @@ package com.graph.solution;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class StronglyConnected {
-	ArrayList<Integer>[] adj = null;
-	ArrayList<Integer> order = new ArrayList<Integer>();
-	Set<Set<Integer>> SCC = new HashSet<Set<Integer>>();
-	int n = 0;
-	int[] prev = null;
-	int[] post = null;
-	int count = 0;
+	private ArrayList<Integer>[] adj = null;
+	private List<Integer> order = new ArrayList<>();
+	private Set<Set<Integer>> strongConnectComp = new HashSet<>();
+	private int nbrVertex = 0;
+	private int[] prev = null;
+	private int[] post = null;
+	private int count = 0;
 
-	public StronglyConnected(int n, ArrayList<Integer>[] adj) {
-		this.n = n;
-		prev = new int[n];
-		post = new int[n];
+	public StronglyConnected(final int nbrVertex, ArrayList<Integer>[] adj) {
+		this.nbrVertex = nbrVertex;
+		prev = new int[nbrVertex];
+		post = new int[nbrVertex];
 		this.adj = adj;
 	}
 
 	@SuppressWarnings("unchecked")
 	public StronglyConnected getReverse() {
-		ArrayList<Integer>[] reverse = (ArrayList<Integer>[]) new ArrayList[n];
-		for (int i = 0; i < n; i++) {
-			reverse[i] = new ArrayList<Integer>();
+		ArrayList<Integer>[] reverse = (ArrayList<Integer>[]) new ArrayList[nbrVertex];
+		for (int i = 0; i < nbrVertex; i++) {
+			reverse[i] = new ArrayList<>();
 		}
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < nbrVertex; i++) {
 			for (int k = 0; k < adj[i].size(); k++) {
 				reverse[adj[i].get(k)].add(i);
 			}
 		}
-		return new StronglyConnected(n, reverse);
+		return new StronglyConnected(nbrVertex, reverse);
 
 	}
 
-	public void explore(int x, int[] visited) {
-		visited[x] = 1;
-		previsit(x);
-		for (int i = 0; i < adj[x].size(); i++) {
-			if (visited[adj[x].get(i).intValue()] != 1)
-				explore(adj[x].get(i).intValue(), visited);
+	public void explore(final int nodeX, int[] visited) {
+		visited[nodeX] = 1;
+		previsit(nodeX);
+		for (int i = 0; i < adj[nodeX].size(); i++) {
+			if (visited[adj[nodeX].get(i).intValue()] != 1) {
+				explore(adj[nodeX].get(i).intValue(), visited);
+			}
 		}
-		postvisit(x);
+		postvisit(nodeX);
 	}
 
-	private void previsit(int x) {
-		prev[x] = count;
+	private void previsit(final int nodeX) {
+		prev[nodeX] = count;
 		count++;
 	}
 
-	private void postvisit(int x) {
-		post[x] = count;
-		order.add(new Integer(x));
+	private void postvisit(final int nodeX) {
+		post[nodeX] = count;
+		order.add(new Integer(nodeX));
 		count++;
 	}
 
-	public void exploreSCC(int x, int[] visited, Set<Integer> set) {
-		set.add(x);
-		visited[x] = 1;
-		for (int i = 0; i < adj[x].size(); i++) {
-			if (visited[adj[x].get(i).intValue()] != 1)
-				exploreSCC(adj[x].get(i).intValue(), visited, set);
+	public void exploreSCC(final int nodeX, int[] visited, final Set<Integer> set) {
+		set.add(nodeX);
+		visited[nodeX] = 1;
+		for (int i = 0; i < adj[nodeX].size(); i++) {
+			if (visited[adj[nodeX].get(i).intValue()] != 1) {
+				exploreSCC(adj[nodeX].get(i).intValue(), visited, set);
+			}
 		}
 	}
 
 	public void SCC() {
-		int[] visited = new int[n];
-		StronglyConnected gReverse = this.getReverse();
+		final int[] visited = new int[nbrVertex];
+		final StronglyConnected gReverse = this.getReverse();
 		gReverse.DFS();
-		// gReverse.print();
-		ArrayList<Integer> walk = gReverse.order;
-		// for (int i = 0; i < walk.size(); i++)
-		// System.out.print(i + " -> ");
+
+		final List<Integer> walk = gReverse.order;
+		int current = -1;
 		for (int i = 0; i < walk.size(); i++) {
-			int current = walk.get(i);
+			current = walk.get(i);
 			if (visited[current] == 0) {
-				Set<Integer> set = new HashSet<>();
+				final Set<Integer> set = new HashSet<>();
 				exploreSCC(current, visited, set);
-				SCC.add(set);
+				strongConnectComp.add(set);
 			}
 		}
 	}
 
 	public void DFS() {
-		int[] visited = new int[n];
+		final int[] visited = new int[nbrVertex];
 		this.count = 1;
 		for (int i = 0; i < adj.length; i++) {
 			if (visited[i] != 1) {
@@ -113,11 +115,11 @@ public class StronglyConnected {
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 
-		int n = 13;
-		ArrayList<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[n];
+		final int nbrVertex = 13;
+		ArrayList<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[nbrVertex];
 
-		for (int i = 0; i < n; i++) {
-			adj[i] = new ArrayList<Integer>();
+		for (int i = 0; i < nbrVertex; i++) {
+			adj[i] = new ArrayList<>();
 		}
 		adj[0].add(1);
 		adj[1].add(2);
@@ -136,11 +138,11 @@ public class StronglyConnected {
 		adj[11].add(12);
 		adj[12].add(10);
 
-		StronglyConnected graph = new StronglyConnected(n, adj);
+		final StronglyConnected graph = new StronglyConnected(nbrVertex, adj);
 		graph.DFS();
 		graph.print();
 		graph.SCC();
-		System.out.println(graph.SCC.size());
+		System.out.println(graph.strongConnectComp.size());
 	}
 
 }

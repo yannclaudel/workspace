@@ -1,46 +1,48 @@
 package com.graph.solution;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GraphTopoSort {
-	List<Integer>[] adj = null;
-	List<Integer> order = new ArrayList<Integer>();
-	private int n = 0;
+	private List<Integer>[] adj = null;
+	private List<Integer> order = new ArrayList<>();
+	private int nbrVertex = 0;
 	private int[] prev = null;
 	private int[] post = null;
 	private int count = 0;
 
-	public GraphTopoSort(int n, List<Integer>[] adj) {
-		this.n = n;
-		this.adj = adj;
-		prev = new int[n];
-		post = new int[n];
+	public GraphTopoSort(final int nbrVertex,final List<Integer>[] adj) {
+		this.nbrVertex = nbrVertex;
+		this.adj = Arrays.copyOf(adj, adj.length);;
+		prev = new int[nbrVertex];
+		post = new int[nbrVertex];
 	}
 
-	public void explore(int x, int[] visited) {
-		visited[x] = 1;
-		previsit(x);
-		for (int i = 0; i < adj[x].size(); i++) {
-			if (visited[adj[x].get(i).intValue()] != 1)
-				explore(adj[x].get(i).intValue(), visited);
+	public void explore(final int nodeX, int[] visited) {
+		visited[nodeX] = 1;
+		previsit(nodeX);
+		for (int i = 0; i < adj[nodeX].size(); i++) {
+			if (visited[adj[nodeX].get(i).intValue()] != 1) {
+				explore(adj[nodeX].get(i).intValue(), visited);
+			}
 		}
-		postvisit(x);
+		postvisit(nodeX);
 	}
 
-	private void previsit(int x) {
-		prev[x] = count;
+	private void previsit(final int nodeX) {
+		prev[nodeX] = count;
 		count++;
 	}
 
-	private void postvisit(int x) {
-		post[x] = count;
-		order.add(new Integer(x));
+	private void postvisit(final int nodeX) {
+		post[nodeX] = count;
+		order.add(new Integer(nodeX));
 		count++;
 	}
 
 	public void DFS() {
-		int[] visited = new int[n];
+		final int[] visited = new int[nbrVertex];
 		this.count = 1;
 		for (int i = 0; i < adj.length; i++) {
 			if (visited[i] != 1) {
@@ -59,18 +61,18 @@ public class GraphTopoSort {
 		}
 		System.out.println();
 		for (int i = order.size() - 1; i > -1; i--) {
-			System.out.print((order.get(i)+1) + " -> ");
+			System.out.print((order.get(i) + 1) + " -> ");
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) {
+	public static void main(final String... args) {
 
-		int n = 6;
-		ArrayList<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[n];
+		final int nbrVertex = 6;
+		ArrayList<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[nbrVertex];
 
-		for (int i = 0; i < n; i++) {
-			adj[i] = new ArrayList<Integer>();
+		for (int i = 0; i < nbrVertex; i++) {
+			adj[i] = new ArrayList<>();
 		}
 		adj[0].add(1);
 		adj[2].add(1);
@@ -79,7 +81,7 @@ public class GraphTopoSort {
 		adj[4].add(1);
 		adj[5].add(4);
 
-		GraphTopoSort graph = new GraphTopoSort(n, adj);
+		final GraphTopoSort graph = new GraphTopoSort(nbrVertex, adj);
 		graph.DFS();
 		graph.print();
 	}

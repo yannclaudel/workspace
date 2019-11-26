@@ -30,10 +30,10 @@ public class GraphTest {
 		adj[3].add(2);
 		adj[3].add(0);
 		
-		Graph graph = new Graph(n,adj);
+		final Graph graph = new Graph(n,adj);
 		graph.DFS();
 		assertTrue(graph.isReachable(0, 3));
-		assertTrue(graph.getGroup_nbr()==1);
+		assertTrue(graph.getNbrGroup()==1);
 
 	}
 	@SuppressWarnings("unchecked")
@@ -54,7 +54,7 @@ public class GraphTest {
 		graph.DFS();
 		assertTrue(!graph.isReachable(0, 7));
 		assertTrue(graph.isReachable(4, 7));
-		assertTrue(graph.getGroup_nbr()==2);
+		assertTrue(graph.getNbrGroup()==2);
 	}
 
 	

@@ -6,22 +6,23 @@ import java.util.List;
 
 public class BFS {
 
-	public static int[] getDistancesFrom(List<Integer>[] adj, int s) {
+	public static int[] getDistancesFrom(final List<Integer>[] adj,final int start) {
 		int[] dist = new int[adj.length];
 		for (int i = 0; i < dist.length; i++) {
 			dist[i] = -1;
 		}
-		dist[s] = 0;
-		Deque<Integer> queue = new ArrayDeque<>();
-		queue.add(s);
-	
+		dist[start] = 0;
+		final Deque<Integer> queue = new ArrayDeque<>();
+		queue.add(start);
+		int unqueue = -1;
+		int current = -1;
 		while (!queue.isEmpty()) {
-			int u = queue.pollFirst().intValue();
-			for (int i = 0; i < adj[u].size(); i++) {
-				int current = adj[u].get(i).intValue();
+			unqueue = queue.pollFirst().intValue();
+			for (int i = 0; i < adj[unqueue].size(); i++) {
+				current = adj[unqueue].get(i).intValue();
 				if (dist[current] == -1) {
 					queue.add(current);
-					dist[current] = dist[u] + 1;
+					dist[current] = dist[unqueue] + 1;
 				}
 			}
 		}
