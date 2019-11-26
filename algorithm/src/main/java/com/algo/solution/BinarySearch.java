@@ -1,49 +1,41 @@
 package com.algo.solution;
 
-import java.util.Scanner;
-
 public class BinarySearch {
 
-	
-	public static int binarySearch(int[] a, int key) {
-		int min = 0, max = a.length - 1;
+	public static int binarySearch(final int[] a, final int key) {
+		int min = 0;
+		int max = a.length - 1;
 		int rtn = -1;
-		if (a[max] < key || key < a[min])
-			return -1;
-		while (min <= max) {
-			int mid = min + (max - min) / 2;
-			if (key == a[mid]) {
-				rtn=mid;
-				break;
+		if (a[max] < key || key < a[min]) {
+			rtn = -1;
+		} else {
+			int mid;
+			while (min <= max) {
+				mid = min + (max - min) / 2;
+				if (key == a[mid]) {
+					rtn = mid;
+					break;
+				} else if (key < a[mid]) {
+					max = mid - 1;
+				} else {
+					min = mid + 1;
+				}
 			}
-			else if (key < a[mid])
-				max = mid - 1;
-			else
-				min = mid + 1;
 		}
 		return rtn;
 	}
+
 	/**
 	 * Linear solution
 	 */
-	static int linearSearch(int[] a, int x) {
+	static int linearSearch(final int[] a, final int x) {
+		int rtn = -1;
 		for (int i = 0; i < a.length; i++) {
-			if (a[i] == x)
-				return i;
+			if (a[i] == x) {
+				rtn = i;
+				break;
+			}
 		}
-		return -1;
+		return rtn;
 	}
-
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int k = scanner.nextInt();
-		int n = scanner.nextInt();
-		int[] a = new int[n];
-		for (int i = 0; i < n; i++) {
-			a[i] = scanner.nextInt();
-		}
-		System.out.print(binarySearch(a, k));
-		scanner.close();
-	}
-
 }

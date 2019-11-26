@@ -15,7 +15,7 @@ public class FibonacciTest {
 	@ParameterizedTest
 	@MethodSource("solution")
 	void testWithMultiArgMethodSource(int n, int sol) {
-		assertEquals(sol, Fibonacci.calc_fib(n));
+		assertEquals(sol, Fibonacci.calcfib(n));
 	}
 
 	@SuppressWarnings("boxing")

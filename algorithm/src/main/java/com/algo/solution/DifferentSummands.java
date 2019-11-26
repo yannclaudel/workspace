@@ -1,7 +1,8 @@
 package com.algo.solution;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DifferentSummands {
+public class DifferentSummands{
 	
 	/**
 	 * TODO
@@ -9,8 +10,8 @@ public class DifferentSummands {
 	 * @return int[]
 	 */
 	
-    public static int[] optimalSummands(int n) {
-        List<Integer> summands = new ArrayList<Integer>();
+    public static int[] optimalSummands(final int n) {
+        final List<Integer> summands = new ArrayList<>();
 
         int remaind = n;
         
@@ -24,14 +25,5 @@ public class DifferentSummands {
         return summands.stream().mapToInt(i -> i.intValue()).toArray();
     }
     
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int[] summands = optimalSummands(n);
-        for (int i : summands) {
-        	System.out.print(i + " ");
-		}
-        scanner.close();
-    }
 }
 

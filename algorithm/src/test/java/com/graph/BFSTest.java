@@ -12,6 +12,7 @@ import com.graph.exercice.BFS;
 
 public class BFSTest {
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testBFS() {
 		int n = 10;

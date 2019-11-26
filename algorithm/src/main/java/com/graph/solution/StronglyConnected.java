@@ -21,6 +21,7 @@ public class StronglyConnected {
 		this.adj = adj;
 	}
 
+	@SuppressWarnings("unchecked")
 	public StronglyConnected getReverse() {
 		ArrayList<Integer>[] reverse = (ArrayList<Integer>[]) new ArrayList[n];
 		for (int i = 0; i < n; i++) {
@@ -56,7 +57,7 @@ public class StronglyConnected {
 		count++;
 	}
 
-	public void exploreSCC(int x, int[] visited, Set set) {
+	public void exploreSCC(int x, int[] visited, Set<Integer> set) {
 		set.add(x);
 		visited[x] = 1;
 		for (int i = 0; i < adj[x].size(); i++) {
@@ -76,7 +77,7 @@ public class StronglyConnected {
 		for (int i = 0; i < walk.size(); i++) {
 			int current = walk.get(i);
 			if (visited[current] == 0) {
-				Set<Integer> set = new HashSet<Integer>();
+				Set<Integer> set = new HashSet<>();
 				exploreSCC(current, visited, set);
 				SCC.add(set);
 			}
@@ -109,6 +110,7 @@ public class StronglyConnected {
 		System.out.println();
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 
 		int n = 13;

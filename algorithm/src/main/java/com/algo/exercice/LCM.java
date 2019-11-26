@@ -1,7 +1,5 @@
 package com.algo.exercice;
 
-import java.util.*;
-
 public class LCM {
 
 	public static long lcm(int a, int b) {		
@@ -16,14 +14,5 @@ public class LCM {
 		return (long) a * b;
 	}
 
-	public static void main(String args[]) {
-		Scanner scanner = new Scanner(System.in);
-		int a = scanner.nextInt();
-		int b = scanner.nextInt();
-
-		System.out.println("lcm_naive = " + lcm_naive(a, b));
-		System.out.println("lcm       = " + lcm(a, b));
-		
-		scanner.close();
-	}
+	
 }

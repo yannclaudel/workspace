@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.Stack;
 
-import com.datastructure.solution.Bracket;
-
 public class CheckBrackets {
 	/**
 	 * 

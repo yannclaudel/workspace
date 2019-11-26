@@ -1,6 +1,5 @@
 package com.algo.solution;
 import java.util.Random;
-import java.util.Scanner;
 
 public class QuickSorting {
     private static Random random = new Random();
@@ -37,18 +36,6 @@ public class QuickSorting {
     }
 
     
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int[] a = new int[n];
-        for (int i = 0; i < n; i++) {
-            a[i] = scanner.nextInt();
-        }
-        randomizedQuickSort(a, 0, n - 1);
-        for (int i = 0; i < n; i++) {
-            System.out.print(a[i] + " ");
-        }
-        scanner.close();
-    }   
+   
 }
 

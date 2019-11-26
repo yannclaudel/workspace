@@ -10,9 +10,10 @@ public class Graph {
 	private int[] group = null;
 	private int group_nbr = 0;
 	
+	@SuppressWarnings("unchecked")
 	public Graph(int n) {
 		this.n = n;
-		adj = (ArrayList<Integer>[]) new ArrayList[n];
+		adj =  new ArrayList[n];
 		for (int i = 0; i < n; i++) {
 			adj[i] = new ArrayList<Integer>();
 		}

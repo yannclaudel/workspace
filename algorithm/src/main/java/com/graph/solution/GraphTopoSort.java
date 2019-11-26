@@ -63,6 +63,7 @@ public class GraphTopoSort {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 
 		int n = 6;

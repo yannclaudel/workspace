@@ -12,6 +12,7 @@ import com.graph.exercice.Graph;
 
 public class GraphTest {
 
+	@SuppressWarnings("unchecked")
 	@Test
 	void testGraph1() {
 		int n = 4;
@@ -35,7 +36,7 @@ public class GraphTest {
 		assertTrue(graph.getGroup_nbr()==1);
 
 	}
-
+	@SuppressWarnings("unchecked")
 	@Test
 	void testGraph2() {
 		int n = 8;

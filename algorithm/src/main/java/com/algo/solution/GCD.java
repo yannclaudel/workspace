@@ -1,7 +1,5 @@
 package com.algo.solution;
 
-import java.util.*;
-
 public class GCD {
 	
 	/**
@@ -37,13 +35,5 @@ public class GCD {
 		return current_gcd;
 	}
 
-	public static void main(String args[]) {
-		Scanner scanner = new Scanner(System.in);
-		int a = scanner.nextInt();
-		int b = scanner.nextInt();
-
-		System.out.println("gcd_naive = " + gcd_naive(a, b));
-		System.out.println("gcd       = " + gcd(a, b));
-		scanner.close();
-	}
+	
 }

@@ -1,7 +1,5 @@
 package com.algo.exercice;
 
-import java.util.*;
-
 public class FibonacciLastDigit {
 	
 	public static int getFibonacciLastDigit(int n) {		
@@ -28,11 +26,4 @@ public class FibonacciLastDigit {
 		return current % 10;
 	}
 
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int n = scanner.nextInt();
-		System.out.println("getFibonacciLastDigitNaive = "+getFibonacciLastDigitNaive(n));
-		System.out.println("getFibonacciLastDigit      = "+getFibonacciLastDigit(n));
-		scanner.close();
-	}
 }
