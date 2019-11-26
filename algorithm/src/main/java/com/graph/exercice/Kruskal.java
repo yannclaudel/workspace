@@ -1,12 +1,12 @@
+package com.graph.exercice;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 
-public class ConnectingPoints {
+public class Kruskal{
 	
 	public class Edge implements Comparable<Edge>{
 		public int vertex1;
@@ -88,8 +88,7 @@ public class ConnectingPoints {
 				if (rank[iid]==rank[jid]) {
 					rank[jid]++;
 				}
-			}
-				
+			}				
 		}
 		@Override
 		public String toString() {
@@ -103,14 +102,13 @@ public class ConnectingPoints {
 		
 		}
 	
-    private static double minimumDistance(int[] x, int[] y) {
-        double result = 0.;
+    private static Set<Edge> findMinimalTotalWeightConnectedGraph(int[] x, int[] y) {
         List<Edge> edges = new ArrayList<>();
-        final JoinSet js = new ConnectingPoints().new JoinSet(y.length);
+        final JoinSet js = new Kruskal().new JoinSet(y.length);
         Set<Edge> resultSet = new HashSet<>();
         for (int i = 0; i < y.length - 1; i++) {
         	for (int j = i+1; j < y.length; j++) {
-    			edges.add(new ConnectingPoints().new Edge(i, j, x[i], y[i], x[j], y[j]));
+    			edges.add(new Kruskal().new Edge(i, j, x[i], y[i], x[j], y[j]));
     		}
 		}
         Collections.sort(edges);
@@ -118,27 +116,31 @@ public class ConnectingPoints {
         	Edge current =edges.get(i);
         	if (js.find(current.vertex1)!=js.find(current.vertex2)) {
         		resultSet.add(current);
-        		result+=current.distance;
         		js.union(current.vertex1, current.vertex2);
         	}
         	
 		}
-//        for (Edge current : resultSet) {
-//        	System.out.println(current.toString());
-//		}
-        return result;
+        return resultSet;
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int[] x = new int[n];
-        int[] y = new int[n];
-        for (int i = 0; i < n; i++) {
-            x[i] = scanner.nextInt();
-            y[i] = scanner.nextInt();
-        }
-        System.out.println(minimumDistance(x, y));
+        int[] x = new int[] {0,0,1,1};
+        int[] y = new int[] {0,1,0,1};
+        Set<Edge> result = findMinimalTotalWeightConnectedGraph(x, y);
+        for (Edge edge : result) {
+			System.out.println(edge.toString());
+		}
+        
+        System.out.println("**************************");
+        
+        x = new int[] {0,0,1,3,3};
+        y = new int[] {0,2,1,0,2};
+        result = findMinimalTotalWeightConnectedGraph(x, y);
+        for (Edge edge : result) {
+			System.out.println(edge.toString());
+		}
+
+        
     }
 }
 
