@@ -5,11 +5,15 @@ public class Invoker {
 	private CommandB B;
 	
 	public void invokeA() {
-		if (A!=null) A.execute();
+		if (A!=null) {
+			A.execute();
+		}
 	}
 
 	public void invokeB() {
-		if (B!=null) B.execute();
+		if (B!=null) {
+			B.execute();
+		}
 	}
 
 	public void setA(CommandA a) {

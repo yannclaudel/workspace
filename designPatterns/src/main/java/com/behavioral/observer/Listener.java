@@ -20,6 +20,7 @@ public class Listener {
         while (scanner.hasNextLine()) {
         	String line = scanner.nextLine();
             notifyObservers(line);
-        }        
+        }     
+        scanner.close();
     }
 }

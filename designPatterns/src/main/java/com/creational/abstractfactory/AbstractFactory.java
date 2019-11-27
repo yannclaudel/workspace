@@ -11,5 +11,5 @@ public interface AbstractFactory {
 	int APIANO = 21;
 	int EPIANO = 22;
 
-	MusicInstrument createInstrument(int TYPE);
+	MusicInstrument createInstrument(int type);
 	}

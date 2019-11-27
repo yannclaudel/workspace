@@ -1,11 +1,16 @@
 package com.structural.facade;
 
-public class ClassA {
+import java.util.logging.Logger;
+
+public class ClassA{
+	
+	private static Logger log = Logger.getLogger(ClassA.class.getName());
+	
 	public void performTaskA1() {		
-		System.out.println("Task A1 is done");
+		log.info("Task A1 is done");
 	}
 
 	public void performTaskA2() {		
-		System.out.println("Task A2 is done");
+		log.info("Task A2 is done");
 	}
 }

@@ -1,9 +1,9 @@
 package com.structural.decorator;
 
-public abstract class Decorator implements Abstract {
-    protected Abstract abstraction;
+public abstract class Decorator implements WhatToDo {
+    protected WhatToDo abstraction;
     
-    public Decorator(final Abstract a) {
-        abstraction = a;
+    public Decorator(final WhatToDo absObj) {
+        abstraction = absObj;
     }
 }

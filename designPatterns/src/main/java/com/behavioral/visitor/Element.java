@@ -12,5 +12,5 @@ public abstract class  Element {
 		return content;
 	}
 
-	abstract void accept(Visitor visitor);
+	public abstract void accept(Visitor visitor);
 }

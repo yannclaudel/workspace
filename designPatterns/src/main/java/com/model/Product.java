@@ -1,13 +1,15 @@
 package com.model;
 
+import java.util.logging.Logger;
+
 public class Product {
 	private String attributeOne;
 	private String attributeTwo;
-
+	private static Logger log = Logger.getLogger(Product.class.getName());
 	public void execute() {
-		System.out.println("execute ...");
-		System.out.println(attributeOne);
-		System.out.println(attributeTwo);
+		log.info("execute ...");
+		log.info(attributeOne);
+		log.info(attributeTwo);
 	}
 
 	public String getAttributeOne() {

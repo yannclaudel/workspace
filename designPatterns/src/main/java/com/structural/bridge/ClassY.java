@@ -1,6 +1,10 @@
 package com.structural.bridge;
 
+import java.util.logging.Logger;
+
 public class ClassY extends Abstract {
+
+	private static Logger log = Logger.getLogger(ClassY.class.getName());
 
 	protected ClassY(Implementation pimpl) {
 		super(pimpl);
@@ -8,10 +12,10 @@ public class ClassY extends Abstract {
 
 	@Override
 	public void execute() {
-		System.out.println("Class Y execute ...");
+		log.info("Class Y execute ...");
 		execute1();
 		execute2();
-		System.out.println();
+
 	}
 
 }

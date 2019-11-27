@@ -1,7 +1,7 @@
 package com.behavioral.state;
 
 public abstract class State {
-	Agent agent;
+	public Agent agent;
 
 	public State(Agent agent) {
 		super();

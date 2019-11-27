@@ -1,9 +1,11 @@
 package com.structural.flyweight;
 
+import java.util.logging.Logger;
+
 public class FlyweightOrder {
 	private Product product;
 	private int quantity;
-
+	private static Logger log = Logger.getLogger(FlyweightOrder.class.getName());
 	public FlyweightOrder(String productName, int quantity) {
 		super();
 		this.product = ProductCache.build(productName);
@@ -11,7 +13,7 @@ public class FlyweightOrder {
 	}
 
 	public void prepare() {
-		System.out.println("Prepare order : quantity = " + this.quantity + "\t product = " + product.getName() + " - "
+		log.info(()->"Prepare order : quantity = " + this.quantity + "\t product = " + product.getName() + " - "
 				+ product.hashCode());
 	}
 

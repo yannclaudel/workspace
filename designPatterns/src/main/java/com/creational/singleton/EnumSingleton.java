@@ -1,9 +1,11 @@
 package com.creational.singleton;
 
+import java.util.logging.Logger;
+
 public enum EnumSingleton {
 	INSTANCE;
 	public static void doIt() {
-		System.out.println("do something ...");
+		Logger.getLogger(EnumSingleton.class.getName()).info("do something ...");
 	}
 
 }

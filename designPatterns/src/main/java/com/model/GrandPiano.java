@@ -1,10 +1,12 @@
 package com.model;
 
-public class GrandPiano extends Piano {
+import java.util.logging.Logger;
 
+public class GrandPiano extends Piano {
+	private static Logger log = Logger.getLogger(GrandPiano.class.getName());
 	@Override
 	public void playMusic() {
-		System.out.println("play grand piano ...");
+		log.info("play grand piano ...");
 	}
 
 }

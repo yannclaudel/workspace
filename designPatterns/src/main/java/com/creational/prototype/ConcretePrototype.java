@@ -1,14 +1,16 @@
 package com.creational.prototype;
 
-public class ConcretePrototype extends Prototype {
+import java.util.logging.Logger;
 
+public class ConcretePrototype extends Prototype {
+	private static Logger log = Logger.getLogger(ConcretePrototype.class.getName());
 	public ConcretePrototype(String pTexte) {
 		super(pTexte);
 	}
 
 	@Override
 	public void display() {
-		System.out.println("Display concrete proto  " + this.texte);
+		log.info(()->"Display concrete proto  " + this.texte);
 	}
 
 }

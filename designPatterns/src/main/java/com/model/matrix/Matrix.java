@@ -4,7 +4,6 @@ public class Matrix implements IMatrix {
 	private final int m; // number of rows
 	private final int n; // number of columns
 	private final double[][] data; // M-by-N array
-
 	public Matrix(int m, int n) {
 		this.m = m;
 		this.n = n;
@@ -26,14 +25,17 @@ public class Matrix implements IMatrix {
 	@Override
 	public IMatrix times(Matrix B) {
 		Matrix A = this;
-		if (A.n != B.m)
+		if (A.n != B.m) {
 			throw new RuntimeException("Illegal matrix dimensions.");
+		}
 		Matrix C = new Matrix(A.m, B.n);
-		for (int i = 0; i < C.m; i++)
-			for (int j = 0; j < C.n; j++)
+		for (int i = 0; i < C.m; i++) {
+			for (int j = 0; j < C.n; j++) {
 				for (int k = 0; k < A.n; k++) {
 					C.data[i][j] += A.data[i][k] * B.data[k][j];
 				}
+			}
+		}
 		return C;
 	}
 
@@ -50,15 +52,17 @@ public class Matrix implements IMatrix {
 	}
 
 	@Override
-	public void display() {
-		System.out.println("---------------------------");
+	public String display() {
+		StringBuffer str = new StringBuffer();
+		str.append("---------------------------\n");
 		for (int i = 0; i < this.m; i++) {
 			for (int j = 0; j < this.n; j++) {
-				System.out.print(data[i][j] + "\t");
+				str.append(data[i][j] + "\t");
 			}
-			System.out.println();
+			str.append("\n");
 		}
-		System.out.println("---------------------------");
+		str.append("---------------------------\n");
+		return str.toString();
 	}
 
 }

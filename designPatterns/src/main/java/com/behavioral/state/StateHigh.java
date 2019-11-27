@@ -8,12 +8,14 @@ public class StateHigh extends State {
 
 	@Override
 	public int nextState() {
-		if (Agent.UP.equals(agent.getCurrentAction()))
-			return -1;
-		else {
+		int rtn = 0;
+		if (Agent.UP.equals(agent.getCurrentAction())) {
+			rtn = -1;
+		} else {
 			agent.setState(new StateMedium(agent));
-			return +1;
+			rtn =  +1;
 		}
+		return rtn;
 	}
 	@Override
 	public String toString() {

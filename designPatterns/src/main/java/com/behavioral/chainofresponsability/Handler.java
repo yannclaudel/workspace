@@ -11,10 +11,11 @@ public abstract class Handler {
 	public abstract boolean check(int number);
 
 	protected boolean checkNext(int number) {
-		if (next == null) {
+		boolean rtn = true;
+		if (next != null) {
 			// throw new RuntimeException("unable to handle this request ...");
-			return true;
+			rtn = next.check(number);
 		}
-		return next.check(number);
+		return rtn;
 	}
 }

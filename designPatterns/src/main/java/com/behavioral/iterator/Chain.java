@@ -2,10 +2,11 @@ package com.behavioral.iterator;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class Chain implements Iterable<Link>{
 	
-	private HashMap<String, Link> chain = new HashMap<>();
+	private Map<String, Link> chain = new HashMap<>();
 	private String last = null;
 	
 	@Override

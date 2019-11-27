@@ -1,39 +1,39 @@
 package com.behavioral.mediator;
 
+import java.util.logging.Logger;
+
 public class ConcreteMediator implements Mediator {
+	private static Logger log = Logger.getLogger(ConcreteMediator.class.getName());
+	private ComponentA compA = null;
+	private ComponentB compB = null;
+	private ComponentC compC = null;
 
-	ComponentA A = null;
-	ComponentB B = null;
-	ComponentC C = null;
-	
 	public void setA(ComponentA a) {
-		A = a;
+		compA = a;
 	}
 
-	public void setB(ComponentB b) {
-		B = b;
+	public void setB(ComponentB compB) {
+		this.compB = compB;
 	}
 
-	public void setC(ComponentC c) {
-		C = c;
+	public void setC(ComponentC comC) {
+		this.compC = comC;
 	}
 
-	public ConcreteMediator() {
-		super();
-	}
 
 	@Override
 	public void notifyMe(Component e) {
-		if ("com.behavioral.mediator.ComponentA".equals(e.getClass().getName()))
-			C.doingMyOwnStuff();
-		if ("com.behavioral.mediator.ComponentB".equals(e.getClass().getName()))
-			C.doingMyOwnStuff();
-	}
-	
-	public void doTaskX(){
-		System.out.println("Mediator is doing X");
-		B.doingMyOwnStuff();
+		if ("com.behavioral.mediator.ComponentA".equals(e.getClass().getName())) {
+			compC.doingMyOwnStuff();
+		}
+		if ("com.behavioral.mediator.ComponentB".equals(e.getClass().getName())) {
+			compC.doingMyOwnStuff();
+		}
 	}
 
-	
+	public void doTaskX() {
+		log.info("Mediator is doing X");
+		compB.doingMyOwnStuff();
+	}
+
 }

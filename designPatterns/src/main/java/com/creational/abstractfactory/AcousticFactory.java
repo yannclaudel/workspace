@@ -6,9 +6,9 @@ import com.model.MusicInstrument;
 
 public class AcousticFactory implements AbstractFactory {
 	@Override
-	public MusicInstrument createInstrument(int TYPE) {
+	public MusicInstrument createInstrument(int type) {
 		MusicInstrument instrument = null;
-		switch (TYPE) {
+		switch (type) {
 		case 1:
 		case 11:
 			instrument = new AcousticGuitar();

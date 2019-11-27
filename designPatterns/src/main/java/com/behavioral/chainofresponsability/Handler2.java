@@ -1,14 +1,18 @@
 package com.behavioral.chainofresponsability;
 
-public class Handler2 extends Handler {
+import java.util.logging.Logger;
 
+public class Handler2 extends Handler {
+	private static Logger log = Logger.getLogger(Handler2.class.getName());
 	@Override
 	public boolean check(int number) {
-		if (number % 2 != 0) {
-			return false;
-		}
-		System.out.println("Check Handler2 OK");
-		return checkNext(number);
+		boolean rtn = false;
+		if (number % 2 == 0) {
+			rtn = checkNext(number);
+			log.info("Check Handler2 OK");
+		}		
+		return rtn;
+
 	}
 
 }

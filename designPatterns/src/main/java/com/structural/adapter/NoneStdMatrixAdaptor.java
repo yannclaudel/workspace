@@ -21,15 +21,17 @@ public class NoneStdMatrixAdaptor extends NoneStdMatrix implements IMatrix {
 	}
 
 	@Override
-	public void display() {
-		System.out.println("---------------------------");
+	public String display() {
+		StringBuffer str = new StringBuffer();
+		str.append("---------------------------\n");
 		for (int i = 0; i < this.getM(); i++) {
 			for (int j = 0; j < this.getN(); j++) {
-				System.out.print(this.getData()[i][j] + "\t");
+				str.append(this.getData()[i][j] + "\t");
 			}
-			System.out.println();
+			str.append("\n");
 		}
-		System.out.println("---------------------------");
+		str.append("---------------------------\n");
+		return str.toString();
 	}
 
 }

@@ -1,10 +1,12 @@
 package com.behavioral.strategy;
 
-public class Strategy1 implements Strategy {
+import java.util.logging.Logger;
 
+public class Strategy1 implements Strategy {
+	private static Logger log = Logger.getLogger(Strategy1.class.getName());
 	@Override
 	public void execute() {
-		System.out.println("execute strategy 1 ....");
+		log.info("execute strategy 1 ....");
 	}
 
 }

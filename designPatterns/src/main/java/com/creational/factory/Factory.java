@@ -8,11 +8,11 @@ public class Factory {
 	public static final int GUITAR = 1;
 	public static final int PIANO = 2;
 
-	public MusicInstrument getObject(int TYPE) {
+	public MusicInstrument getObject(int type) {
 
 		
 		MusicInstrument instrument = null;
-		switch (TYPE) {
+		switch (type) {
 		case 1:
 			instrument = new Guitar();
 			break;

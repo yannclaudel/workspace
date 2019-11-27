@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Gardien {
-	private List<Memento> list = new LinkedList<Memento>();
+	private List<Memento> list = new LinkedList<>();
 
 	public void addMemento(Memento pMemento) {
 		list.add(pMemento);

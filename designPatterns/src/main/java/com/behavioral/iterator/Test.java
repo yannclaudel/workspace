@@ -1,8 +1,10 @@
 package com.behavioral.iterator;
 
-import java.util.Iterator;
+import java.util.logging.Logger;
 
 public class Test {
+	
+	private static Logger log = Logger.getLogger(Test.class.getName());
 	public static void main(String[] args) {
 		Chain chain = new Chain();
 		Link Z = new Link("Z");
@@ -14,9 +16,8 @@ public class Test {
 		Link D = new Link("D");
 		chain.add(D);
 		
-		for (Iterator<Link> iterator = chain.iterator(); iterator.hasNext();) {
-			Link link = (Link) iterator.next();
-			System.out.println(link.getContent());			
+		for (Link link : chain) {
+			log.info(link.getContent());			
 		}
 		
 	}

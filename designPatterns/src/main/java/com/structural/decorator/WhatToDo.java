@@ -1,6 +1,6 @@
 package com.structural.decorator;
 
-public interface Abstract {
+public interface WhatToDo {
 	
 	void execute(); 
 

@@ -1,10 +1,12 @@
 package com.model;
 
-public class AcousticGuitar extends Guitar {
+import java.util.logging.Logger;
 
+public class AcousticGuitar extends Guitar {
+	private static Logger log = Logger.getLogger(AcousticGuitar.class.getName());
 	@Override
 	public void playMusic() {
-		System.out.println("play acoustic guitar ...");
+		log.info("play acoustic guitar ...");
 	}
 
 }

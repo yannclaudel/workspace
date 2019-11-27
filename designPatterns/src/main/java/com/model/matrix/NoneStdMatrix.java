@@ -19,13 +19,17 @@ public class NoneStdMatrix {
 
 	public NoneStdMatrix times(double[][] B) {
 		NoneStdMatrix A = this;
-		if (A.n != B.length)
+		if (A.n != B.length) {
 			throw new RuntimeException("Illegal matrix dimensions.");
+		}
 		NoneStdMatrix C = new NoneStdMatrix(A.m, B.length);
-		for (int i = 0; i < C.m; i++)
-			for (int j = 0; j < C.n; j++)
-				for (int k = 0; k < A.n; k++)
-					C.data[i][j] += (A.data[i][k] * B[k][j]);
+		for (int i = 0; i < C.m; i++) {
+			for (int j = 0; j < C.n; j++) {
+				for (int k = 0; k < A.n; k++) {
+					C.data[i][j] += A.data[i][k] * B[k][j];
+				}
+			}
+		}
 		return C;
 	}
 

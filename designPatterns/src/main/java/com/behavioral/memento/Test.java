@@ -1,17 +1,19 @@
 package com.behavioral.memento;
 
-public class Test {
+import java.util.logging.Logger;
 
+public class Test {
+	private static Logger log = Logger.getLogger(Test.class.getName());
 	public static void main(String[] args) {
 		Gardien gardien = new Gardien();
 		Creator creator = new Creator("orignal", "otherData");
-		System.out.println(creator.getState());
+		log.info(creator.getState());
 
 		gardien.addMemento(creator.saveToMemento());
-		System.out.println(creator.changeState());
+		log.info(creator.changeState());
 
 		creator.restoreFromMemento(gardien.getMemento(gardien.getLastIndex()));
-		System.out.println(creator.getState());
+		log.info(creator.getState());
 
 	}
 

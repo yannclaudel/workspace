@@ -17,9 +17,11 @@ public class Matrix implements IMatrix {
         m = data.length;
         n = data[0].length;
         this.data = new double[m][n];
-        for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
-                    this.data[i][j] = data[i][j];
+        for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				this.data[i][j] = data[i][j];
+			}
+		}
     }
 
     // copy constructor
@@ -28,17 +30,20 @@ public class Matrix implements IMatrix {
     // create and return a random M-by-N matrix with values between 0 and 1
     public static IMatrix random(int m, int n) {
         Matrix A = new Matrix(m, n);
-        for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
-                A.data[i][j] = Math.random();
+        for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				A.data[i][j] = Math.random();
+			}
+		}
         return A;
     }
 
     // create and return the N-by-N identity matrix
     public static IMatrix identity(int n) {
         Matrix I = new Matrix(n, n);
-        for (int i = 0; i < n; i++)
-            I.data[i][i] = 1;
+        for (int i = 0; i < n; i++) {
+			I.data[i][i] = 1;
+		}
         return I;
     }
 
@@ -56,9 +61,11 @@ public class Matrix implements IMatrix {
     @Override
 	public IMatrix transpose() {
         Matrix A = new Matrix(n, m);
-        for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
-                A.data[j][i] = this.data[i][j];
+        for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				A.data[j][i] = this.data[i][j];
+			}
+		}
         return A;
     }
 
@@ -69,11 +76,15 @@ public class Matrix implements IMatrix {
     @Override
 	public IMatrix plus(Matrix B) {
         Matrix A = this;
-        if (B.m != A.m || B.n != A.n) throw new RuntimeException("Illegal matrix dimensions.");
+        if (B.m != A.m || B.n != A.n) {
+			throw new RuntimeException("Illegal matrix dimensions.");
+		}
         Matrix C = new Matrix(m, n);
-        for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
-                C.data[i][j] = A.data[i][j] + B.data[i][j];
+        for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				C.data[i][j] = A.data[i][j] + B.data[i][j];
+			}
+		}
         return C;
     }
 
@@ -85,11 +96,15 @@ public class Matrix implements IMatrix {
     @Override
 	public IMatrix minus(Matrix B) {
         Matrix A = this;
-        if (B.m != A.m || B.n != A.n) throw new RuntimeException("Illegal matrix dimensions.");
+        if (B.m != A.m || B.n != A.n) {
+			throw new RuntimeException("Illegal matrix dimensions.");
+		}
         Matrix C = new Matrix(m, n);
-        for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
-                C.data[i][j] = A.data[i][j] - B.data[i][j];
+        for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				C.data[i][j] = A.data[i][j] - B.data[i][j];
+			}
+		}
         return C;
     }
 
@@ -99,12 +114,24 @@ public class Matrix implements IMatrix {
 	 */
     @Override
 	public boolean eq(Matrix B) {
+    	
         Matrix A = this;
-        if (B.m != A.m || B.n != A.n) throw new RuntimeException("Illegal matrix dimensions.");
-        for (int i = 0; i < m; i++)
-            for (int j = 0; j < n; j++)
-                if (A.data[i][j] != B.data[i][j]) return false;
-        return true;
+        if (B.m != A.m || B.n != A.n) {
+			throw new RuntimeException("Illegal matrix dimensions.");
+		}
+        boolean rtn = true;
+        for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (A.data[i][j] != B.data[i][j]) {
+					rtn = false;
+					break;
+				}
+				if(!rtn) {
+					break;
+				}
+			}
+		}
+        return rtn;
     }
 
     // return C = A * B
@@ -114,12 +141,17 @@ public class Matrix implements IMatrix {
     @Override
 	public IMatrix times(Matrix B) {
         Matrix A = this;
-        if (A.n != B.m) throw new RuntimeException("Illegal matrix dimensions.");
+        if (A.n != B.m) {
+			throw new RuntimeException("Illegal matrix dimensions.");
+		}
         Matrix C = new Matrix(A.m, B.n);
-        for (int i = 0; i < C.m; i++)
-            for (int j = 0; j < C.n; j++)
-                for (int k = 0; k < A.n; k++)
-                    C.data[i][j] += (A.data[i][k] * B.data[k][j]);
+        for (int i = 0; i < C.m; i++) {
+			for (int j = 0; j < C.n; j++) {
+				for (int k = 0; k < A.n; k++) {
+					C.data[i][j] += A.data[i][k] * B.data[k][j];
+				}
+			}
+		}
         return C;
     }
 
@@ -130,8 +162,9 @@ public class Matrix implements IMatrix {
 	 */
     @Override
 	public IMatrix solve(Matrix rhs) {
-        if (m != n || rhs.m != n || rhs.n != 1)
-            throw new RuntimeException("Illegal matrix dimensions.");
+        if (m != n || rhs.m != n || rhs.n != 1) {
+			throw new RuntimeException("Illegal matrix dimensions.");
+		}
 
         // create copies of the data
         Matrix A = new Matrix(this);
@@ -142,18 +175,23 @@ public class Matrix implements IMatrix {
 
             // find pivot row and swap
             int max = i;
-            for (int j = i + 1; j < n; j++)
-                if (Math.abs(A.data[j][i]) > Math.abs(A.data[max][i]))
-                    max = j;
+            for (int j = i + 1; j < n; j++) {
+				if (Math.abs(A.data[j][i]) > Math.abs(A.data[max][i])) {
+					max = j;
+				}
+			}
             A.swap(i, max);
             b.swap(i, max);
 
             // singular
-            if (A.data[i][i] == 0.0) throw new RuntimeException("Matrix is singular.");
+            if (A.data[i][i] == 0.0) {
+				throw new RuntimeException("Matrix is singular.");
+			}
 
             // pivot within b
-            for (int j = i + 1; j < n; j++)
-                b.data[j][0] -= b.data[i][0] * A.data[j][i] / A.data[i][i];
+            for (int j = i + 1; j < n; j++) {
+				b.data[j][0] -= b.data[i][0] * A.data[j][i] / A.data[i][i];
+			}
 
             // pivot within A
             for (int j = i + 1; j < n; j++) {
@@ -169,8 +207,9 @@ public class Matrix implements IMatrix {
         Matrix x = new Matrix(n, 1);
         for (int j = n - 1; j >= 0; j--) {
             double t = 0.0;
-            for (int k = j + 1; k < n; k++)
-                t += A.data[j][k] * x.data[k][0];
+            for (int k = j + 1; k < n; k++) {
+				t += A.data[j][k] * x.data[k][0];
+			}
             x.data[j][0] = (b.data[j][0] - t) / A.data[j][j];
         }
         return x;

@@ -1,14 +1,16 @@
 package com.behavioral.observer;
 
-public class MailObserver implements Observer {
+import java.util.logging.Logger;
 
+public class MailObserver implements Observer {
+	private static Logger log = Logger.getLogger(MailObserver.class.getName());
 	@Override
 	public void update(String event) {
 		this.mail(event);
 	}
 
 	public void mail(String msg) {
-		System.out.println("send mail with the msg : " + msg);
+		log.info(()->"send mail with the msg : " + msg);
 	}
 
 
