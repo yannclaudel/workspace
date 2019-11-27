@@ -24,30 +24,33 @@ public class MaxHeap {
 
 	public Integer getParent(int i) {
 		int index = getParentIdx(i);
-		if (index < heap.size())
+		if (index < heap.size()) {
 			return heap.get(index);
-		else
+		} else {
 			return null;
+		}
 	}
 	public int getLeftChildIdx(int i) {
 		return 2 * i + 1;
 	}
 	public Integer getLeftChild(int i) {
 		int index = getLeftChildIdx(i);
-		if (index < heap.size())
+		if (index < heap.size()) {
 			return heap.get(index);
-		else
+		} else {
 			return null;
+		}
 	}
 	public int getRightChildIdx(int i) {
 		return 2 * (i + 1);
 	}
 	public Integer getRightChild(int i) {
 		int index = getRightChildIdx(i);
-		if (index < heap.size())
+		if (index < heap.size()) {
 			return heap.get(index);
-		else
+		} else {
 			return null;
+		}
 	}
 
 	public void siftUp(int i) {
@@ -98,10 +101,11 @@ public class MaxHeap {
 	public void changePriority(int i, Integer p) {
 		int currentP = heap.get(i).intValue();
 		heap.set(i, p);
-		if (p.intValue() > currentP)
+		if (p.intValue() > currentP) {
 			siftUp(i);
-		else
+		} else {
 			siftDown(i);
+		}
 	}
 
 	@Override

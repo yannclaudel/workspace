@@ -39,7 +39,9 @@ public class JoinSet {
 	public void union(int i,int j) {
 		final int iid= find(i);
 		final int jid= find(j);
-		if (iid==jid) return;
+		if (iid==jid) {
+			return;
+		}
 		if (rank[iid]>rank[jid]) {
 			parent[jid]=iid;
 		}else {

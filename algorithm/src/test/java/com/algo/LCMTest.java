@@ -14,17 +14,17 @@ public class LCMTest {
 
 	@ParameterizedTest
 	@MethodSource("solution")
-	void testWithMultiArgMethodSource(int a, int b, long sol) {
+	public void testWithMultiArgMethodSource(final int a,final  int b,final  long sol) {
 		assertEquals(sol, LCM.lcm(a, b));
 	}
 
 	@SuppressWarnings("boxing")
-	static Stream<Arguments> solution() {
+	public static Stream<Arguments> solution() {
 		return Stream.of(
 				Arguments.of(12,16,48l), 
 				Arguments.of(3,5,15l), 
 				Arguments.of(121,11,121l),
-				Arguments.of(9562113,9755287,965773413l),
-				Arguments.of(761457,614573,467970912861l));
+				Arguments.of(9_562_113,9_755_287,965_773_413l),
+				Arguments.of(761_457,614_573,467_970_912_861l));
 	}
 }

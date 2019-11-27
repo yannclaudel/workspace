@@ -1,5 +1,6 @@
 package com.graph;
 
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -14,12 +15,12 @@ public class GraphTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
-	void testGraph1() {
-		int n = 4;
-		ArrayList<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[n];
+	public void testGraph1() {
+		final int nbrVertex = 4;
+		ArrayList<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[nbrVertex];
 
-		for (int i = 0; i < n; i++) {
-			adj[i] = new ArrayList<Integer>();
+		for (int i = 0; i < nbrVertex; i++) {
+			adj[i] = new ArrayList<>();
 		}
 		adj[0].add(1);
 		adj[0].add(3);
@@ -30,31 +31,31 @@ public class GraphTest {
 		adj[3].add(2);
 		adj[3].add(0);
 		
-		final Graph graph = new Graph(n,adj);
+		final Graph graph = new Graph(nbrVertex,adj);
 		graph.DFS();
-		assertTrue(graph.isReachable(0, 3));
-		assertTrue(graph.getNbrGroup()==1);
+		assertTrue(graph.isReachable(0, 3)," 0 and 3 are reachable ");
+		assertSame(1,graph.getNbrGroup()==1,"graph.getNbrGroup()==1");
 
 	}
 	@SuppressWarnings("unchecked")
 	@Test
-	void testGraph2() {
-		int n = 8;
-		List<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[n];
-		adj[0] = new ArrayList<Integer>(Arrays.asList(new Integer[]{1,2}));
-		adj[1] = new ArrayList<Integer>(Arrays.asList(new Integer[]{0,2}));
-		adj[2] = new ArrayList<Integer>(Arrays.asList(new Integer[]{0,1,3}));
-		adj[3] = new ArrayList<Integer>(Arrays.asList(new Integer[]{2}));
-		adj[4] = new ArrayList<Integer>(Arrays.asList(new Integer[]{5}));
-		adj[5] = new ArrayList<Integer>(Arrays.asList(new Integer[]{4,6,7}));
-		adj[6] = new ArrayList<Integer>(Arrays.asList(new Integer[]{5}));
-		adj[7] = new ArrayList<Integer>(Arrays.asList(new Integer[]{5}));
+	public void testGraph2() {
+		final int nbrVertex = 8;
+		List<Integer>[] adj = (ArrayList<Integer>[]) new ArrayList[nbrVertex];
+		adj[0] = new ArrayList<>(Arrays.asList(new Integer[]{1,2}));
+		adj[1] = new ArrayList<>(Arrays.asList(new Integer[]{0,2}));
+		adj[2] = new ArrayList<>(Arrays.asList(new Integer[]{0,1,3}));
+		adj[3] = new ArrayList<>(Arrays.asList(new Integer[]{2}));
+		adj[4] = new ArrayList<>(Arrays.asList(new Integer[]{5}));
+		adj[5] = new ArrayList<>(Arrays.asList(new Integer[]{4,6,7}));
+		adj[6] = new ArrayList<>(Arrays.asList(new Integer[]{5}));
+		adj[7] = new ArrayList<>(Arrays.asList(new Integer[]{5}));
 		
-		final Graph graph = new Graph(n,adj);
+		final Graph graph = new Graph(nbrVertex,adj);
 		graph.DFS();
-		assertTrue(!graph.isReachable(0, 7));
-		assertTrue(graph.isReachable(4, 7));
-		assertTrue(graph.getNbrGroup()==2);
+		assertTrue(!graph.isReachable(0, 7)," 0 and 7 are not reachable");
+		assertTrue(graph.isReachable(4, 7)," 4 and 7 are reachable");
+		assertSame(2,graph.getNbrGroup()==2,"graph.getNbrGroup()==2");
 	}
 
 	

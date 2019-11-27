@@ -1,14 +1,15 @@
 package com.datastructure.solution;
 
 public class Node {
-	String data;
-	private Node left = null, right = null;
+	private String data;
+	private Node left = null;
+	private Node right = null;
 
 	public Node(String data) {
 		super();
 		this.data = data;
 	}
-	
+
 	public String getData() {
 		return data;
 	}
@@ -32,6 +33,5 @@ public class Node {
 	public void setRight(Node right) {
 		this.right = right;
 	}
-	
-	
+
 }

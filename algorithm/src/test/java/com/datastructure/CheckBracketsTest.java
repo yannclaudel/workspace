@@ -14,7 +14,7 @@ public class CheckBracketsTest {
 
 	@ParameterizedTest
 	@MethodSource("solutionNok")
-	void testWithMultiArgMethodSourceNok(String text) {
+	public void testWithMultiArgMethodSourceNok(final String text) {
 		Assertions.assertThrows(ParseException.class, () -> {
 			CheckBrackets.checkBracket(text);
 		  });
@@ -22,11 +22,11 @@ public class CheckBracketsTest {
 
 	@ParameterizedTest
 	@MethodSource("solutionOk")
-	void testWithMultiArgMethodSourceOk(String text) {
+	public void testWithMultiArgMethodSourceOk(final String text) {
 		Assertions.assertDoesNotThrow(() -> {CheckBrackets.checkBracket(text);});
 	}
 	
-	static Stream<Arguments> solutionOk() {
+	public static Stream<Arguments> solutionOk() {
 		return Stream.of(
 				Arguments.of("{{e}}(e)(e(([e])e))"), 
 				Arguments.of("()"),
@@ -34,7 +34,7 @@ public class CheckBracketsTest {
 	}	
 
 	
-	static Stream<Arguments> solutionNok() {
+	public static Stream<Arguments> solutionNok() {
 		return Stream.of(
 				Arguments.of("{{e}}(e))(e(([e])e))"), 
 				Arguments.of("("),

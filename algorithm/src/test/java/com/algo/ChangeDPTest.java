@@ -14,12 +14,12 @@ public class ChangeDPTest {
 
 	@ParameterizedTest
 	@MethodSource("solution")
-	void testWithMultiArgMethodSource(int m, int[] coins, int sol) {
+	public void testWithMultiArgMethodSource(int m, int[] coins, int sol) {
 		assertEquals(sol, ChangeDP.getChange(m, coins));
 	}
 
 	@SuppressWarnings("boxing")
-	static Stream<Arguments> solution() {
+	public static Stream<Arguments> solution() {
 		return Stream.of(
 				Arguments.of(6,new int[]{1,3,4},2), 
 				Arguments.of(10,new int[]{1,3,4},3),

@@ -16,7 +16,7 @@ public class DifferentSummandsTest {
 	
 	@ParameterizedTest
 	@MethodSource("solution")
-	void testWithMultiArgMethodSource(int n,int nbr) {
+	public void testWithMultiArgMethodSource(int n,int nbr) {
 		int[] sol = DifferentSummands.optimalSummands(n);
 		 for (int i : sol) {
 	        	System.out.print(i + " ");
@@ -26,8 +26,12 @@ public class DifferentSummandsTest {
 	}
 	
 	private boolean checkSol(int sol[],int n,int nbr) {
-		if (sol==null || sol.length==0) return false;
-		if (sol.length!=nbr) return false;
+		if (sol==null || sol.length==0) {
+			return false;
+		}
+		if (sol.length!=nbr) {
+			return false;
+		}
 		boolean rtn = true;
 		Arrays.sort(sol);
 		int sum = sol[0];
@@ -37,12 +41,14 @@ public class DifferentSummandsTest {
 				rtn = false;break; 
 			} 
 		}
-		if (sum!=n) rtn = false;
+		if (sum!=n) {
+			rtn = false;
+		}
 		return rtn;
 	}
 
 	@SuppressWarnings("boxing")
-	static Stream<Arguments> solution() {
+	public static Stream<Arguments> solution() {
 	    return Stream.of(
 	        Arguments.of(10,4),
 	        Arguments.of(11,4),

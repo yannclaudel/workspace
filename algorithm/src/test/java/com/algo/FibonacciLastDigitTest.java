@@ -14,12 +14,12 @@ public class FibonacciLastDigitTest {
 
 	@ParameterizedTest
 	@MethodSource("solution")
-	void testWithMultiArgMethodSource(int n, int sol) {
+	public void testWithMultiArgMethodSource(int n, int sol) {
 		assertEquals(sol, FibonacciLastDigit.getFibonacciLastDigit(n));
 	}
 
 	@SuppressWarnings("boxing")
-	static Stream<Arguments> solution() {
+	public static Stream<Arguments> solution() {
 		return Stream.of(
 				Arguments.of(10, 5), 
 				Arguments.of(11, 9), 

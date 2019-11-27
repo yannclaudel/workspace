@@ -14,16 +14,16 @@ public class FibonacciTest {
 
 	@ParameterizedTest
 	@MethodSource("solution")
-	void testWithMultiArgMethodSource(int n, int sol) {
+	public void testWithMultiArgMethodSource(int n, int sol) {
 		assertEquals(sol, Fibonacci.calcfib(n));
 	}
 
 	@SuppressWarnings("boxing")
-	static Stream<Arguments> solution() {
+	public static Stream<Arguments> solution() {
 	    return Stream.of(
 	        Arguments.of(10, 55),
 	        Arguments.of(11, 89),
-	        Arguments.of(45,1134903170)
+	        Arguments.of(45,1_134_903_170)
 	    );
 	}
 }

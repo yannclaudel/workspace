@@ -13,12 +13,12 @@ import com.algo.exercice.Knapsack;
 public class KnapsackTest {
 	@ParameterizedTest
 	@MethodSource("solution")
-	void testWithMultiArgMethodSource(int W, int[] w, int[] v,int sol) {
+	public void testWithMultiArgMethodSource(int W, int[] w, int[] v,int sol) {
 		assertEquals(sol, Knapsack.optimalValue(W, w, v));
 	}
 
 	@SuppressWarnings("boxing")
-	static Stream<Arguments> solution() {
+	public static Stream<Arguments> solution() {
 		return Stream.of(				
 				Arguments.of(10,new int[]{6,3,4,2},new int[]{30,14,16,9},46),
 				Arguments.of(50,new int[]{10,20,30},new int[]{60,100,120},220),

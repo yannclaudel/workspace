@@ -13,18 +13,18 @@ import com.algo.exercice.GCD;
 public class GCDTest {
 	@ParameterizedTest
 	@MethodSource("solution")
-	void testWithMultiArgMethodSource(int a, int b, int sol) {
+	public void testWithMultiArgMethodSource(final int a,final int b,final int sol) {
 		assertEquals(sol, GCD.gcd(a, b));
 	}
 
 	@SuppressWarnings("boxing")
-	static Stream<Arguments> solution() {
+	public static Stream<Arguments> solution() {
 		return Stream.of(
 				Arguments.of(15,20,5), 
 				Arguments.of(31,41,1), 
 				Arguments.of(121,11,11),
-				Arguments.of(78789,45612,3),
-				Arguments.of(9562113,9755287,96587),
-				Arguments.of(28851538,1183019,17657));
+				Arguments.of(78_789,45_612,3),
+				Arguments.of(9_562_113,9_755_287,96_587),
+				Arguments.of(28_851_538,1_183_019,17_657));
 	}
 }

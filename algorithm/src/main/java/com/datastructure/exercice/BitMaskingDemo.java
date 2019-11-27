@@ -16,8 +16,8 @@ public class BitMaskingDemo {
 		print("add {4} to {2,3}",E1);
 
 		// create {6} and {7}
-		int FLAG_6 = (1 << 5);
-		int FLAG_7 = (1 << 6);
+		final int FLAG_6 = 1 << 5;
+		final int FLAG_7 = 1 << 6;
 		print("FLAG_6 ",FLAG_6);
 		print("FLAG_7 ",FLAG_7);
 

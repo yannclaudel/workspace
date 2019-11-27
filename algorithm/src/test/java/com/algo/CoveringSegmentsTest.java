@@ -14,11 +14,11 @@ import com.algo.solution.Segment;
 public class CoveringSegmentsTest {
 	@ParameterizedTest
 	@MethodSource("solution")
-	void testWithMultiArgMethodSource(Segment[] segments ,int[] sol) {
+	public void testWithMultiArgMethodSource(Segment[] segments ,int[] sol) {
 		assertArrayEquals(sol, CoveringSegments.optimalPoints(segments));
 	}
 
-	static Stream<Arguments> solution() {
+	public static Stream<Arguments> solution() {
 		return Stream.of(
 				Arguments.of(new Segment[] {new Segment(0, 1),new Segment(1, 2)},new int[]{1}),
 				Arguments.of(new Segment[] {new Segment(0, 2),new Segment(1, 2),new Segment(3, 5),new Segment(4, 6)},new int[]{2,5}),

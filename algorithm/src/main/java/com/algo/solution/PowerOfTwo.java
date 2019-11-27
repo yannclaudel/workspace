@@ -32,20 +32,20 @@ public class PowerOfTwo {
 	
 	public static BigInteger hash(long p, int a,int b,BigInteger x,long m) {
 		
-		x = x.multiply(new BigInteger(Integer.toString(a))).add(new BigInteger(Integer.toString(b)));
-		x = x.mod(new BigInteger(Long.toString(p)));
-		x = x.mod(new BigInteger(Long.toString(m)));
-		return x;
+		BigInteger rtn = x.multiply(new BigInteger(Integer.toString(a))).add(new BigInteger(Integer.toString(b)));
+		rtn = rtn.mod(new BigInteger(Long.toString(p)));
+		rtn = rtn.mod(new BigInteger(Long.toString(m)));
+		return rtn;
 	}
 	
 	public static void main(String[] args) {
 		
-		int n = 100000;
+		final int n = 100_000;
 		System.out.println(sumOfPowerOfTwo0(n));
 		System.out.println(sumOfPowerOfTwo2(n));
 		
-		for (int i = 1482567; i < 1482574; i++) {
-			System.out.println("h("+i+")="+hash(10000019,34,2,new BigInteger(Integer.toString(i)),1000l));			
+		for (int i = 1_482_567; i < 1_482_574; i++) {
+			System.out.println("h("+i+")="+hash(10_000_019,34,2,new BigInteger(Integer.toString(i)),1000l));			
 		}
 		
 	}

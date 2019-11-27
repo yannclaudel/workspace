@@ -14,12 +14,12 @@ public class CarFuelingTest {
 
 	@ParameterizedTest
 	@MethodSource("solution")
-	void testWithMultiArgMethodSource(int dist, int tank, int[] stops ,int sol) {
+	public void testWithMultiArgMethodSource(final int dist,final  int tank,final int[] stops ,final int sol) {
 		assertEquals(sol, CarFueling.computeMinRefills(dist, tank, stops));
 	}
 
 	@SuppressWarnings("boxing")
-	static Stream<Arguments> solution() {
+	public static Stream<Arguments> solution() {
 		return Stream.of(
 				Arguments.of(950,40,new int[]{200,375,550,750},-1), 
 				Arguments.of(950,400,new int[]{200,375,550,750},2),
