@@ -10,6 +10,9 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.datex.model.Measurement;
 
 public class DatexParserHandler extends DefaultHandler {
+	
+	private String publicationTime = "unknown";
+	
 	// This is the list which shall be populated while parsing the XML.
 	private ArrayList<Measurement> list = new ArrayList<Measurement>();
 
@@ -36,6 +39,7 @@ public class DatexParserHandler extends DefaultHandler {
 		if ("siteMeasurements".equals(qName)) {
 			// New User instance
 			Measurement measure = new Measurement();
+			measure.setMeasurementTime(publicationTime);
 			this.objectStack.push(measure);
 		}
 		if (!this.objectStack.empty()) {
@@ -69,6 +73,9 @@ public class DatexParserHandler extends DefaultHandler {
 			return; // ignore white space
 		}
 		// System.out.println(currentElement() + ":" + value);
+        if ("publicationTime".equals(currentElement())) {
+            publicationTime = value;
+        }
 		if (!this.objectStack.empty()) {
 			Measurement m = (Measurement) this.objectStack.peek();
 			// handle the value based on to which element it belongs
@@ -76,8 +83,6 @@ public class DatexParserHandler extends DefaultHandler {
 				m.setLatitude(value);
 			} else if ("longitude".equals(currentElement())) {
 				m.setLongitude(value);
-			} else if ("trafficStatusValue".equals(currentElement())) {
-				m.setTrafficStatus(value);
 			} else if ("speed".equals(currentElement())) {
 				m.setAverageVehicleSpeed(value);
 			} else if ("roadNumber".equals(currentElement())) {

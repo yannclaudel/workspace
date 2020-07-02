@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.datex.model.Datex;
+import com.datex.model.FileName;
 import com.datex.model.Measurement;
 import com.datex.parser.Datex2Parser;
 
@@ -53,8 +54,9 @@ public class ParseJob implements Job {
 	private void write(List<Measurement> out) {
 		BufferedWriter writer = null;
 		try {
-			String filename = Datex.RESOURCE_MAP.get(this.url);
-			if (filename==null) filename = Datex.RESOURCE_DEFAULT; 
+			//String filename = Datex.RESOURCE_MAP.get(this.url);
+			//if (filename==null) filename = Datex.RESOURCE_DEFAULT;
+			String filename = FileName.getInstance().getDatexFileName(this.url);
 			writer = new BufferedWriter(new FileWriter(filename, true));
 			for (Measurement measurement : out) {
 				writer.write(measurement.print(";"));
